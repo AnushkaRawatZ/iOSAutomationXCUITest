@@ -16,6 +16,7 @@ struct BibleVerseView: View {
             TextField("Enter Bible Passage - John 3:16", text: $viewModel.passage)
                 .padding()
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .accessibilityIdentifier("textField")
 
             HStack {
                 Button("Show Verse") {
@@ -47,10 +48,12 @@ struct BibleVerseView: View {
                     Text(verse.text)
                         .font(.title2)
                         .padding()
+                        .accessibilityIdentifier("verse")
                     if showReference {
                         Text(verse.reference)
                             .font(.title)
                             .bold()
+                            .accessibilityLabel("verseLabel")
                     }
                 }
             }

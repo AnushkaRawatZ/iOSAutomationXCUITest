@@ -29,9 +29,9 @@ struct PersonalInformationView: View {
                         Text("Date of Birth: \(formattedBirthDate)")
                     }
                 } else {
-                    Text("Full Name: \(userSettings.name)")
-                    Text("Email: \(userSettings.email)")
-                    Text("Date of Birth: \(formattedBirthDate)")
+                    Text("Full Name: \(userSettings.name)").accessibilityIdentifier("fullName")
+                    Text("Email: \(userSettings.email)").accessibilityIdentifier("email")
+                    Text("Date of Birth: \(formattedBirthDate)").accessibilityIdentifier("dateOfBirth")
                 }
             }
 
@@ -40,8 +40,8 @@ struct PersonalInformationView: View {
                     TextField("Address", text: $userSettings.address)
                     TextField("Phone", text: $userSettings.phone)
                 } else {
-                    Text("Address: \(userSettings.address)")
-                    Text("Phone: \(userSettings.phone)")
+                    Text("Address: \(userSettings.address)").accessibilityIdentifier("address")
+                    Text("Phone: \(userSettings.phone)").accessibilityIdentifier("phone")
                 }
             }
 

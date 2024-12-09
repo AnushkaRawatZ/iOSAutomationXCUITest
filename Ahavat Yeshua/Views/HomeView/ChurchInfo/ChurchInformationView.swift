@@ -24,7 +24,7 @@ struct ChurchInformationView: View {
                     SingleRowLink(image: "location.fill",
                                   label: content.churchAddress,
                                   url: content.churchGoogleMapsLocation,
-                                  lineLimit: 2)
+                                  lineLimit: 2).accessibilityIdentifier("churchAddress")
                     HStack {
                         Image(systemName: "clock")
                         
@@ -35,19 +35,20 @@ struct ChurchInformationView: View {
                             }
                         }
                         .pickerStyle(MenuPickerStyle())
-                    }
+                    }.accessibilityIdentifier("churchTimings")
+                    
                     SingleRowLink(image: "video.fill",
                                   label: content.youtubeGreeting,
-                                  url: content.liveStringURL)
+                                  url: content.liveStringURL).accessibilityIdentifier("video")
                 }
                 
                 Section(header: Text("Share with Friends")) {
                     Button(action: shareProfile) {
                         Text("Church information")
-                    }
+                    }.accessibilityIdentifier("churchInfoBtn")
                     Button(action: shareProfile) {
                         Text("Personal Goals")
-                    }
+                    }.accessibilityIdentifier("personalGoalsBtn")
                 }
                 
                 Section(header: Text("Join Us")) {

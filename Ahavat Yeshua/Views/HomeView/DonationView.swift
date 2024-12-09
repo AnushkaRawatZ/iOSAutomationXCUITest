@@ -15,7 +15,7 @@ struct DonationView: View {
     var body: some View {
         VStack {
             Text("Total Amount: $\(totalAmount, specifier: "%.2f")")
-                .font(.headline)
+                .font(.headline).accessibilityIdentifier("totalAmountLabel")
             
             HStack {
                 Button(action: {
@@ -26,6 +26,7 @@ struct DonationView: View {
                         .background(Color.blue)
                         .foregroundColor(Color.white)
                         .cornerRadius(10)
+                        .accessibilityIdentifier("1DollarBtn")
                 }
                 
                 Button(action: {
@@ -36,16 +37,18 @@ struct DonationView: View {
                         .background(Color.green)
                         .foregroundColor(Color.white)
                         .cornerRadius(10)
+                        .accessibilityIdentifier("5DollarBtn")
+
                 }
             }
             
             Stepper(value: $quantity, in: 0...10) {
-                Text("Quantity: \(quantity)")
+                Text("Quantity: \(quantity)").accessibilityIdentifier("quantityLabel")
             }
             .padding()
             
             Text("Total: $\(totalAmount * Double(quantity), specifier: "%.2f")")
-                .font(.headline)
+                .font(.headline).accessibilityIdentifier("totalLabel")
             
             Button(action: {
                 // Handle the donation action here
@@ -57,6 +60,7 @@ struct DonationView: View {
                     .background(Color.orange)
                     .foregroundColor(Color.white)
                     .cornerRadius(10)
+                    .accessibilityIdentifier("donateBtn")
             }
         }
         .padding()
@@ -111,16 +115,18 @@ struct CongratulationsView: View {
 
 
 struct FireworksView: View {
+    @State private var isAnimating = false
     var body: some View {
         Image(systemName: "sparkles")
-            .font(.largeTitle)
-            .foregroundColor(.yellow)
-            .rotationEffect(.degrees(15))
-            .scaleEffect(1.5)
-            .animation(
-                Animation.easeInOut(duration: 1)
-                    .repeatForever(autoreverses: true)
-            )
+                    .font(.largeTitle)
+                    .foregroundColor(.yellow)
+                    .rotationEffect(.degrees(isAnimating ? 15 : 0))
+                    .scaleEffect(isAnimating ? 2 : 1)
+                    .onAppear {
+                        withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+                            isAnimating = true
+                        }
+                    }
     }
 }
 
